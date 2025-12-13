@@ -4,7 +4,9 @@ import numpy as np
 class Graphics:
 
     @staticmethod
-    def graficar_resultados(x_vals, r_g1, r_g2, t_ex, t_g1, t_g2):
+    def graficar_resultados(x_vals, m_g, m_ls, m_lpt, t_g, t_lg, t_lpt):
+
+        
         
         # --- GRÁFICA 1: CALIDAD DE LA SOLUCIÓN (NORMALIZADA) ---
         plt.figure(figsize=(10, 6))
@@ -40,3 +42,24 @@ class Graphics:
         plt.grid(True, which="both", ls="-")
         plt.savefig("grafica_tiempos_01.png")
         plt.show()
+    
+
+    '''def promedios():
+        if obj_exact > 0:
+                sum_ratio_g1 += (obj_g1 / obj_exact)
+                sum_ratio_g2 += (obj_g2 / obj_exact)
+            else:
+                sum_ratio_g1 += 1
+                sum_ratio_g2 += 1
+                
+            sum_time_exact += t_exact
+            sum_time_g1 += t_g1
+            sum_time_g2 += t_g2
+
+        # Guardar promedios de este tamaño n
+        avg_ratios_g1.append(sum_ratio_g1 / REPETICIONES)
+        avg_ratios_g2.append(sum_ratio_g2 / REPETICIONES)
+        
+        avg_times_exact.append(sum_time_exact / REPETICIONES)
+        avg_times_g1.append(sum_time_g1 / REPETICIONES)
+        avg_times_g2.append(sum_time_g2 / REPETICIONES)'''
