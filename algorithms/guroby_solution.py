@@ -8,7 +8,7 @@ class GurobiSolution:
     @staticmethod
     def resolver_exacto_gurobi(num_procesadores, duraciones, tiempo_limite):
         """ Retorna (makespan, tiempo_ejecucion) """
-        start_time = time.time()
+        start_time = time.perf_counter()
         num_tareas = len(duraciones)
         
         modelo = gp.Model("P_Cmax")
@@ -30,6 +30,6 @@ class GurobiSolution:
         
         # Si no encuentra solución (por tiempo muy corto), retornamos infinito para evitar error
         if modelo.SolCount == 0:
-            return float('inf'), time.time() - start_time
+            return float('inf'), time.perf_counter() - start_time
             
-        return modelo.ObjVal, time.time() - start_time
+        return modelo.ObjVal, time.perf_counter() - start_time

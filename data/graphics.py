@@ -40,7 +40,11 @@ class Grafica:
             self.medias_greedy1.append(np.array(self.makespan["GREEDY1"][n_tareas]).mean())
             self.medias_greedy2.append(np.array(self.makespan["GREEDY2"][n_tareas]).mean())
             self.y_err_greedy1.append(1.96*np.array(self.makespan["GREEDY1"][n_tareas]).std())
+            #data_ls = np.array(self.makespan["GREEDY1"][n_tareas])
+            #self.y_err_greedy1.append(1.96 * data_ls.std(ddof=1) / np.sqrt(len(data_ls)))
             self.y_err_greedy2.append(1.96*np.array(self.makespan["GREEDY2"][n_tareas]).std())
+            #data_lpt = np.array(self.makespan["GREEDY1"][n_tareas])
+            #self.y_err_greedy2.append(1.96 * data_lpt.std(ddof=1) / np.sqrt(len(data_lpt)))
         self.graficar_makespans()
     
     #self.medias_gurobi=[1,1,1,1]
@@ -60,7 +64,7 @@ class Grafica:
         self.ax[0].errorbar(self.n_tareas_list,self.medias_greedy1,self.y_err_greedy1,fmt='r-o',capsize=3)
         self.ax[0].errorbar(self.n_tareas_list,self.medias_greedy2,self.y_err_greedy2,fmt='g-o',capsize=3)
         self.ax[0].set_xlabel("Cantidad de tareas")
-        self.ax[0].set_ylabel("Makespans(ms)")
+        self.ax[0].set_ylabel("Ratio de aproximación")
         self.ax[0].legend(["Gurobi","List Scheduling","Longest Time Processing First"])
 
     def inicializar_variablesTemporales(self):
@@ -111,10 +115,10 @@ class Grafica:
         self.ax[1].plot(self.n_tareas_list,self.medias_tiempos_greedy2,'g-o',linewidth=2)
         self.ax[1].legend(["Gurobi","List Scheduling","Longest Time Processing First"])
         self.ax[1].set_xlabel("Cantidad de tareas")
-        self.ax[1].set_ylabel("Tiempo de procesamiento(ms)")
+        self.ax[1].set_ylabel("Tiempo de procesamiento (s)")
         self.fig.tight_layout(rect=[0, 0, 1, 0.95])
         self.fig.set_size_inches(8, 6)
-        self.fig.suptitle("Metricas metricosas XD\n", fontsize=24,fontfamily="serif",)
+        self.fig.suptitle("Resultados\n", fontsize=24,fontfamily="serif",)
         plt.show()
     def guardar_grafica(self,nombre_figura):
         self.fig.savefig(nombre_figura)

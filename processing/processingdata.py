@@ -44,13 +44,15 @@ class ProcesaDatos:
                 
                 tasks = gen.generar_instancia( tamanio_tareas[i], media_duracion, random.random(), distribution)
 
+                #logging.info(f">>>>>>>>>>>>>  Instancia a procesar: {tasks}")
+
                 # >>>>>>>>>>>>>>> LIST SCHEDULING
                 asignaciones_ls, cargas_ls, makespan_ls, tiempo_ls = GreedyQueues.schedule_tasks_on_processors(tasks, num_processors, flag=False)
                 logging.info(f"\n >>> List Scheduling para instancia de {tamanio_tareas[i]} tareas | Repetición {r} <<<")
                 
                 logging.info(f">>> LS Makespan: {makespan_ls}")
                 
-                logging.info(f">>> LS Tiempo de ejecución: {tiempo_ls:.5f} ms")
+                logging.info(f">>> LS Tiempo de ejecución: {tiempo_ls:.5f} s")
 
 
                 # >>>>>>>>>>>>>>>>< LONGEST PROCESSING TIME FIRST
@@ -59,15 +61,15 @@ class ProcesaDatos:
                 
                 logging.info(f">>> LPT Makespan: {makespan_lpt}")
                 
-                logging.info(f">>> LPT Tiempo de ejecución: {tiempo_lpt:.5f} ms")
+                logging.info(f">>> LPT Tiempo de ejecución: {tiempo_lpt:.5f} s")
         
 
                 # >>>>>>>>>>>>>>>>< GUROBI EXACTA
-                tiempo_limite=30
+                tiempo_limite=40
                 makespan_gurobi, tiempo_gurobi = GurobiSolution.resolver_exacto_gurobi(num_processors, tasks, tiempo_limite)
                 logging.info(f"\n >>> Gurobi para instancia de {tamanio_tareas[i]} tareas  | Repetición {r} <<<")
                 logging.info(f">>> Gurobi Makespan: {makespan_gurobi:.5f}")
-                logging.info(f">>> Gurobi Times: {tiempo_gurobi:.5f} ms")
+                logging.info(f">>> Gurobi Times: {tiempo_gurobi:.5f} s")
 
                 sub_makespans_ls.append(makespan_ls)
                 sub_makespans_lpt.append(makespan_lpt)

@@ -21,7 +21,7 @@ class GreedyQueues:
 
         """
         # ------ Inicia el conteo de tiempo ------
-        start_time = time.time()
+        start_time = time.perf_counter()
 
         # Define si las tareas van ordenadas (LPT) o no (LS)
         if flag:
@@ -71,7 +71,7 @@ class GreedyQueues:
         
 
         # ---- Fin: medir tiempo ----
-        finish_time = time.time()
+        finish_time = time.perf_counter()
         tiempo_ejecucion = (finish_time - start_time)
 
         return asignaciones, cargas_finales, max_makespan, tiempo_ejecucion
